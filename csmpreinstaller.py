@@ -16,7 +16,6 @@ class Csmpreinstaller:
         # 执行命令
         command = "swapoff -a"
         self.base.com(command)
-        self.logger.log(f"执行命令：{command}")
 
         try:
             file_path = '/etc/fstab'
@@ -87,10 +86,10 @@ class Csmpreinstaller:
         print("安装docker完成")
 
     def start_docker(self):
-        command = '''
-            systemctl start docker
-            systemctl enable docker
-        '''
+        command = "systemctl start docker"
+        result = self.base.com(command)
+
+        command = "systemctl enable docker"
         result = self.base.com(command)
 
         try:
