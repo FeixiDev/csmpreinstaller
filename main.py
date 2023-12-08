@@ -19,7 +19,7 @@ def display_version():
     print("version: v1.0.0")
 
 def main():
-    parser = argparse.ArgumentParser(description='None')
+    parser = argparse.ArgumentParser(description='csmpreinstaller')
     parser.add_argument('-d', '--install_docker', action='store_true',
                         help='install docker')
     parser.add_argument('-k', '--install_kubernetes', action='store_true',
@@ -40,6 +40,6 @@ def main():
     else:
         install_docker(csm)
         install_kubernetes(csm)
-        
+
 if __name__ == '__main__':
     main()
