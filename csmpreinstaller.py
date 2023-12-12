@@ -73,18 +73,18 @@ class Csmpreinstaller:
         if result.returncode != 0:
             self.base.logger.log(f"{command}, 执行失败")
 
-        command = "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg"
+        command = "VERSION_STRING=5:20.10.23~3-0~ubuntu-focal"
         result = self.base.com(command)
         if result.returncode != 0:
             self.base.logger.log(f"{command}, 执行失败")
             
-        command = 'echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null'
+        command = 'apt-get install -y docker-ce=$VERSION_STRING docker-ce-cli=$VERSION_STRING containerd.io=1.6.15-1  docker-buildx-plugin docker-compose-plugin'
         result = self.base.com(command)
         if result.returncode != 0:
             self.base.logger.log(f"{command}, 执行失败")
             
         print("安装docker完成")
-
+        
     def start_docker(self):
         command = "systemctl start docker"
         result = self.base.com(command)
