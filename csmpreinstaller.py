@@ -90,7 +90,7 @@ class Csmpreinstaller:
         if "not found" in result.stdout:    
             print("安装 docker 失败")
         else:
-            print("安装 docker 完成")
+            print("安装 docker 成功")
         
     def start_docker(self):
         command = "systemctl start docker"
@@ -103,7 +103,7 @@ class Csmpreinstaller:
             # 检查 Docker 服务状态
             command = "systemctl is-active docker"
             result = self.base.com(command)
-            if result.stdout == "active":
+            if result.stdout.strip() == "active":
                 print("Docker 已启动")
             else:
                 print("Docker 未启动")
